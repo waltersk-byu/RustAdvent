@@ -4,7 +4,7 @@ use std::path::Path;
 
 ///
 /// Day 1 advent solution 
-/// Find the elf with the most calories 
+/// Find the elf with the most calories, or the top three, depending on which part
 /// 
 pub fn find_most_calories(part_two: bool) -> u64 {
 
@@ -16,7 +16,7 @@ pub fn find_most_calories(part_two: bool) -> u64 {
 
         for line in lines {
             if let Ok(data) = line {
-                // break when there is an empty line or it is the last line
+                // break when there is an empty line
 
                 if data.trim().len() == 0 {
                     // its a break add the value to the top counts instance
@@ -25,6 +25,8 @@ pub fn find_most_calories(part_two: bool) -> u64 {
                     elf_calorie_count = 0;
                 } else {
                     // add to the current elf count 
+                    // Keep error handling simple, program will crash with expect
+                    // if the value cannot be parsed.
                     elf_calorie_count += data.trim().parse::<u64>().expect("invalid number in file");
                 }
 
@@ -47,9 +49,9 @@ pub fn find_most_calories(part_two: bool) -> u64 {
 
 }
 
-//
-// Helper method to return an iterator over a file 
-//
+///
+/// Helper method to return an iterator over a file 
+///
 fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
 where P: AsRef<Path>, {
     let file = File::open(filename)?;
@@ -70,7 +72,7 @@ struct TopElfs {
 impl TopElfs {
     /// new
     /// 
-    pub fn new() -> Self {
+    fn new() -> Self {
         Self{one:0, two:0, three: 0}
     }
     ///

@@ -5,6 +5,7 @@ use std::path::Path;
 ///
 /// Return the score of the paper rock scissors competition
 /// if part_two is true, we are doing the second part of the day puzzle
+/// and the second value is how the round should end, and not my move
 /// 
 pub fn find_paper_rock_scissors_score(part_two : bool) -> u64 {
     
@@ -32,6 +33,8 @@ pub fn find_paper_rock_scissors_score(part_two : bool) -> u64 {
 
                     // compare the first move to the expected outcome.  The first move is 
                     // A - Rock, B Paper, C scissors
+                    // calclate the round score based what I whould play given the expected outcome
+                    // The score is the value of the move plus the result of the round
                     match moves[0] {
                         "A" => match moves[1] {
                             "X" => round_score += 3, // I lose with scissors 
@@ -110,7 +113,7 @@ pub fn find_paper_rock_scissors_score(part_two : bool) -> u64 {
    
     }
 
-
+    // return the total score
     total_score
 }
 
