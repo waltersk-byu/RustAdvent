@@ -6,9 +6,9 @@ use std::path::Path;
 /// Day 1 advent solution 
 /// Find the elf with the most calories 
 /// 
-pub fn find_most_calories() -> u64 {
+pub fn find_most_calories(part_two: bool) -> u64 {
 
-    let mut max_elf_calorie_count : u64 = 0;
+    let mut top_counts :TopElfs = TopElfs::new();
 
     // Read the day1 input file
     if let Ok(lines) = read_lines("day1input.txt"){
@@ -19,10 +19,8 @@ pub fn find_most_calories() -> u64 {
                 // break when there is an empty line or it is the last line
 
                 if data.trim().len() == 0 {
-                    // its a break check to see if this elf has the most currently
-                    if elf_calorie_count > max_elf_calorie_count {
-                        max_elf_calorie_count = elf_calorie_count;
-                    }
+                    // its a break add the value to the top counts instance
+                    top_counts.new_count(elf_calorie_count);
 
                     elf_calorie_count = 0;
                 } else {
@@ -34,12 +32,18 @@ pub fn find_most_calories() -> u64 {
         }
 
         // check the last one
-        if elf_calorie_count > max_elf_calorie_count {
-            max_elf_calorie_count = elf_calorie_count;
-        }
+        top_counts.new_count(elf_calorie_count);
    
     }
-    max_elf_calorie_count
+
+    if part_two {
+        // in part two we need to return the sum of the top three 
+        top_counts.one + top_counts.two + top_counts.three
+
+    } else {
+        // for part one we return the value of the top count
+        top_counts.one
+    }
 
 }
 
@@ -50,4 +54,38 @@ fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
 where P: AsRef<Path>, {
     let file = File::open(filename)?;
     Ok(io::BufReader::new(file).lines())
+}
+
+///
+/// Hold the top three elfs calorie counts 
+/// 
+struct TopElfs {
+    one:u64,
+    two:u64,
+    three:u64
+}
+
+///
+/// Methods for Top_Elfs
+impl TopElfs {
+    /// new
+    /// 
+    pub fn new() -> Self {
+        Self{one:0, two:0, three: 0}
+    }
+    ///
+    /// get a new count, if it is in the top three save its value
+    fn new_count(&mut self, count:u64) {
+        if count > self.one {
+            self.three = self.two;
+            self.two = self.one;
+            self.one = count;
+        } else if count > self.two {
+            self.three = self.two;
+            self.two = count;
+        } else if count > self.three {
+            self.three = count;
+        }
+    }
+
 }
