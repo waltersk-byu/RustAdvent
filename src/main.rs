@@ -9,7 +9,7 @@ mod day3;
 // Call a method for each daily puzzle 
 //
 fn main() {
-    println!("Advent 2022 solutions in Rust");
+    println!("Advent 2022 solutions in Rust"); 
 
     // Day 1
     let mut day1_solution: u64 = day1::find_most_calories(false);
