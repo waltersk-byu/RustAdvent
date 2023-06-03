@@ -15,8 +15,10 @@ pub fn find_common_item_priority(part_two: bool) -> u64 {
     let mut total_priorty:u64 = 0;
 
     // Read the day1 input file
-    if let Ok(lines) = read_lines("day3input_test.txt"){
+    if let Ok(lines) = read_lines("day3input.txt"){
 
+        // Use String here rather than &str since these live outside the block reading the 
+        // entries 
         let mut rucksack1 = String::from("");
         let mut rucksack2 = String::from("");
         let mut rucksack3 = String::from("");
@@ -51,16 +53,8 @@ pub fn find_common_item_priority(part_two: bool) -> u64 {
                                     // the value is in the second one, now check the third
                                     match rucksack3.find(c1) {
                                         Some(_) => {
-                                            // the item matched in all three, find the priorty
-                                            let ascii_value :u64 = u64::from(c1);
-                                            if c1.is_ascii_uppercase() {
-                                                total_priorty += ascii_value - 38;
-                                            } else {
-                                                total_priorty += ascii_value - 96;
-                                            }
-                                        
+                                            total_priorty += get_item_priority(c1);
                                             break;
-
                                         }
                                         None => {}
                                     }
@@ -83,12 +77,7 @@ pub fn find_common_item_priority(part_two: bool) -> u64 {
                         match compartment2.find(c1) { 
                             Some(_) => {
                                 //get the priority value
-                                let ascii_value :u64 = u64::from(c1);
-                                if c1.is_ascii_uppercase() {
-                                    matching_item_priority = ascii_value - 38;
-                                } else {
-                                    matching_item_priority = ascii_value - 96;
-                                }
+                                matching_item_priority = get_item_priority(c1);
                                 break;
                             },
                             None => {}
@@ -120,3 +109,22 @@ where P: AsRef<Path>, {
     Ok(io::BufReader::new(file).lines())
 }
 
+///
+/// return the priority based on upper or lower case 
+/// use the ascii value of the character to help get the priority
+/// Lowercase item types a through z have priorities 1 through 26.
+/// Uppercase item types A through Z have priorities 27 through 52.
+/// 
+#[allow(unused_assignments)]
+fn get_item_priority(item: char) -> u64 {
+    let mut return_value:u64 = 0;
+
+    let ascii_value :u64 = u64::from(item);
+    if item.is_ascii_uppercase() {
+        return_value = ascii_value - 38;
+    } else {
+        return_value = ascii_value - 96;
+    }
+
+    return_value
+}

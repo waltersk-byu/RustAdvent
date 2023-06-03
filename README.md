@@ -24,4 +24,4 @@ Visual Studio Code
 
 # Future Work
 
-Coming ...
+Complete more of the daily puzzles 

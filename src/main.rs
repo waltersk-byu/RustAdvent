@@ -12,7 +12,7 @@ fn main() {
     println!("Advent 2022 solutions in Rust");
 
     // Day 1
-    let mut day1_solution = day1::find_most_calories(false);
+    let mut day1_solution: u64 = day1::find_most_calories(false);
     println!("Day 1 part 1 solution is {day1_solution}");
     day1_solution = day1::find_most_calories(true);
     println!("Day 1 part 2 solution is {day1_solution}");

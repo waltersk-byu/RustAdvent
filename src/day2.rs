@@ -101,10 +101,7 @@ pub fn find_paper_rock_scissors_score(part_two : bool) -> u64 {
 
                     }
 
-                    //println!("Round score {},{} : {}", moves[0], moves[1], round_score);
-
                     total_score += round_score;
-
 
                 }
 
