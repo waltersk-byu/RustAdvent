@@ -9,6 +9,7 @@ I am using this project to learn the basics of rust
 # Development Environment
 
 rust version  1.69.0
+
 Visual Studio Code - inluding rust-analyzer extension
 
 
