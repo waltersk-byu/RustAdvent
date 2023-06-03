@@ -2,6 +2,7 @@
 // The code for each daily puzzle is in its own file
 mod day1;
 mod day2;
+mod day3;
 
 //
 // main entry point for the program.
@@ -21,4 +22,11 @@ fn main() {
     println!("Day 2 part 1 solution is {day2_solution}");
     day2_solution = day2::find_paper_rock_scissors_score(true);
     println!("Day 2 part 2 solution is {day2_solution}");
+
+    // Day 3
+    let mut day3_solution: u64 = day3::find_common_item_priority(false);
+    println!("Day 3 part 1 solution is {day3_solution}");
+    //day2_solution = day2::find_paper_rock_scissors_score(true);
+    //println!("Day 2 part 2 solution is {day2_solution}");
+
 }
