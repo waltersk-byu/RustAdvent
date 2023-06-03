@@ -26,7 +26,7 @@ fn main() {
     // Day 3
     let mut day3_solution: u64 = day3::find_common_item_priority(false);
     println!("Day 3 part 1 solution is {day3_solution}");
-    //day2_solution = day2::find_paper_rock_scissors_score(true);
-    //println!("Day 2 part 2 solution is {day2_solution}");
+    day3_solution = day3::find_common_item_priority(true);
+    println!("Day 3 part 2 solution is {day3_solution}");
 
 }
