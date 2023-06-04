@@ -8,9 +8,13 @@ I am using this project to learn the basics of rust
 
 # Development Environment
 
-rust version  1.69.0
+- rust version  1.69.0
+- Visual Studio Code - inluding rust-analyzer extension
 
-Visual Studio Code - inluding rust-analyzer extension
+To run the project run this in a command prompt
+
+cargo run
+
 
 
 # Useful Websites
