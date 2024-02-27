@@ -1,8 +1,10 @@
 # Overview
 
-Implementing solutions for the 2022 Advent of code in rust
+This project implements both parts of day 1, day 2, and day 3 of the Advent of code from 2022.
+All the implementations were done using rust. 
 
-I am using this project to learn the basics of rust
+This project was selected to learn the basics of rust using a fun set of problems to solve.
+
 
 [Software Demo Video](https://youtu.be/ef479ImSDSA)
 
